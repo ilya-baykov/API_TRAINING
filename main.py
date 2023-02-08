@@ -1,11 +1,17 @@
 import requests
 
-
 API = "bfcc2a9de8bbc2b6720138dccf429271"
 
+url = "http://api.openweathermap.org/geo/1.0/direct"
+
 city_name = input("Введите название города ")
-coordinates = f"http://api.openweathermap.org/geo/1.0/direct?q={city_name}&limit=1&appid={API}"
-res_coord = requests.get(coordinates)
+params_for_coord = {
+    "q": city_name,
+    "limit": 1,
+    "appid": API
+}
+
+res_coord = requests.get(url, params=params_for_coord)
 lon = res_coord.json()[0]['lon']
 lat = res_coord.json()[0]['lat']
 total_res = requests.get(
